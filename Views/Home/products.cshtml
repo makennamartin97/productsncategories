@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Product
+
+<a href="/products">Products |</a><a href="/categories"> Categories</a>
+
+<h1>New Product</h1>
+<div class="form-group">
+    <form action="createproduct" method="post">
+        <label>Name:</label>
+        <input type="text" name= "productname" class="form-control">
+        <label>Price:</label>
+        <input type="number" name= "price" class="form-control">
+        <input type="submit" class="btn btn-danger" value="Submit">
+
+    </form>
+</div>
+
+<div class="right">
+    <h2>Existing Products</h2>
+    <ul>
+    
+        @foreach (Product p in ViewBag.allproducts)
+        {
+            <li><a href="/products/@p.productID">@p.productname</a></li>
+        }
+    </ul>
+</div>

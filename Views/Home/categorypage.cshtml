@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Category
+
+<div class="jumbotron text-center">
+    <h1 class="display-4">@Model.categoryname</h1>
+</div>
+<h2>Products:</h2>
+<ul>
+
+    @foreach(Association p in @Model.productsincategory) 
+    {
+        <li><a href="/products/@p.navproduct.productID">@p.navproduct.productname</a></li>
+
+    }
+</ul>
+
+<h2>Add Product:</h2>
+<form action="/category/@Model.categoryID/add" method="post">
+    <select name="productID" class="form-control">
+        @foreach (var c in ViewBag.AllProducts)
+        {
+            <option value="@c.productID">@c.productname</option>
+        }
+    </select>
+    <input class="btn btn-primary" type="submit">
+</form>
